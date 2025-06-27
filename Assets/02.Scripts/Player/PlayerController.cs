@@ -79,6 +79,8 @@ namespace StarterAssets
         public Transform handTransform;
         public bool inHand = false;
 
+        [SerializeField] private GameObject itemIndicatorUI;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -153,6 +155,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            if (itemIndicatorUI != null) itemIndicatorUI.SetActive(inHand);
         }
 
         private void Update()
@@ -162,6 +166,8 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+
+            if (itemIndicatorUI != null) itemIndicatorUI.SetActive(inHand);
         }
 
         private void LateUpdate()
